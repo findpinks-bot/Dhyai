@@ -90,6 +90,11 @@
             letter-spacing: 0.02em;
         }
 
+        /* Forces the two process lines tightly together */
+        .tight-lines {
+            line-height: 1.2;
+        }
+
         .end-statement {
             color: #9e6821;
             display: block;
@@ -133,72 +138,4 @@
             display: block;
         }
 
-        /* GENTLE FADE */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 1.5s ease, transform 1.5s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="bg-texture"></div>
-    <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
-
-    <section class="hero fade-in">
-        <h2>
-            Time embodied in material.<br>
-            Built to live with.
-        </h2>
-    </section>
-
-    <div class="content-container">
-        <section class="chapter fade-in">
-            <h2>About</h2>
-            <p>DHYAI designs objects for everyday life.</p>
-            <p>Design is integrated.<br>Objects endure.</p>
-            <span class="end-statement">They remain.</span>
-        </section>
-
-        <section class="chapter fade-in">
-            <h2>Process & Materials</h2>
-            <p>Material determines form.<br>Time determines character.</p>
-            <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-            
-            <img src="Process-Image-1.png" alt="Process" class="full-bleed fade-in">
-        </section>
-
-        <section class="chapter fade-in">
-            <h2 style="margin-bottom: 0;">Objects in use</h2>
-            <div class="gallery-wrap">
-                <img src="Object-Image-1.png" alt="Object" class="fade-in">
-                <img src="Object-Image-2.png" alt="Detail" class="fade-in">
-                <img src="Object-Image-3.png" alt="Material" class="fade-in">
-            </div>
-        </section>
-
-        <section class="chapter fade-in" style="margin-bottom: 0;">
-            <h2>Contact</h2>
-            <a href="#">WhatsApp</a>
-            <a href="#">Call</a>
-            <span class="end-statement">We respond personally.</span>
-            
-            <img src="Process-Image-2.png" alt="Process" class="full-bleed fade-in" style="margin-bottom: 0;">
-        </section>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+        /* GENTLE
