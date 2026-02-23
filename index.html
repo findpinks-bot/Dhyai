@@ -66,9 +66,9 @@
             font-weight: 600;
         }
 
-        /* HERO SECTION (Now acts as the master container for the logo) */
+        /* HERO SECTION */
         .hero {
-            position: relative; /* Crucial: Traps the absolute logo inside this section */
+            position: relative; 
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -79,12 +79,12 @@
             box-sizing: border-box;
         }
 
-        /* BULLETPROOF LOGO (Locked to the top of the hero section only) */
+        /* BULLETPROOF LOGO (Corner oriented, 28% larger) */
         .logo {
             position: absolute; 
             top: 60px;
-            left: var(--grid-line); 
-            width: 140px;
+            left: 5vw; /* Left corner oriented */
+            width: 180px; /* Scaled up from 140px */
             mix-blend-mode: multiply;
             z-index: 10;
         }
@@ -107,133 +107,3 @@
         }
 
         a:hover {
-            color: #322203; 
-        }
-
-        .tight-stack {
-            line-height: 1.35; 
-        }
-
-        .end-statement {
-            color: #9e6821;
-            display: block;
-            font-size: 24px; 
-            letter-spacing: 0.02em;
-            word-spacing: 0.08em;
-        }
-
-        /* LAYOUT ARCHITECTURE */
-        .content-container {
-            padding: 0 var(--grid-line); 
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .chapter {
-            margin-bottom: var(--chapter-pause); 
-        }
-
-        /* FULL BLEED IMAGES */
-        .full-bleed {
-            width: 100vw;
-            height: auto;
-            position: relative;
-            left: calc(-1 * var(--grid-line)); 
-            margin-top: 15vh;
-            display: block;
-        }
-
-        /* EDITORIAL GALLERY */
-        .gallery-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 15vh; 
-            margin-top: 80px; 
-        }
-
-        .gallery-wrap img {
-            height: auto;
-            display: block;
-        }
-        
-        .img-1 { max-width: 550px; margin-left: 10vw; } 
-        .img-2 { max-width: 450px; margin-left: 0; } 
-        .img-3 { max-width: 650px; margin-left: 5vw; } 
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s ease, transform 1.5s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="bg-texture"></div>
-
-    <section class="hero fade-in">
-        <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
-        <h2>
-            Time embodied in material.<br>
-            Built to live with.
-        </h2>
-    </section>
-
-    <div class="content-container">
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>About</h2>
-                <p>DHYAI designs objects for everyday life.</p>
-                <p class="tight-stack">Design is integrated.<br>Objects endure.</p>
-                <span class="end-statement">They remain.</span>
-            </div>
-        </section>
-
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>Process & Materials</h2>
-                <p class="tight-stack">Material determines form.<br>Time determines character.</p>
-                <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-            </div>
-            <img src="Process-Image-1.png" alt="Process" class="full-bleed fade-in">
-        </section>
-
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>Objects in use</h2>
-            </div>
-            <div class="gallery-wrap">
-                <img src="Object-Image-1.png" alt="Object" class="fade-in img-1">
-                <img src="Object-Image-2.png" alt="Detail" class="fade-in img-2">
-                <img src="Object-Image-3.png" alt="Material" class="fade-in img-3">
-            </div>
-        </section>
-
-        <section class="chapter fade-in" style="margin-bottom: 0;">
-            <div class="text-block">
-                <h2>Contact</h2>
-                <p class="tight-stack">
-                    <a href="#">WhatsApp</a><br>
-                    <a href="#">Call</a><br>
-                    <a href="#">Email</a>
-                </p>
-                <span class="end-statement">We respond personally.</span>
-            </div>
-            <img src="Process-Image-2.png" alt="Process" class="full-bleed fade-in" style="margin-bottom: 0;">
-        </section>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
