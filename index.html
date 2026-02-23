@@ -39,7 +39,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url('Hero-Image.jpg');
+            background-image: url('Hero-Image.png');
             background-size: cover;
             background-position: center;
             opacity: 0.15;
@@ -60,7 +60,6 @@
         }
 
         /* 3. RESPONSIVE TYPOGRAPHY */
-        /* clamp(minimum-size, preferred-viewport-scaling, maximum-size) */
         h1, h2 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
@@ -70,7 +69,7 @@
             line-height: 1.15;
         }
 
-        p, .contact-link {
+        p, .contact-link, .end-statement {
             font-size: clamp(1.1rem, 1.8vw, 26px);
             font-weight: 400;
             line-height: 1.8;
@@ -82,16 +81,15 @@
 
         .end-statement {
             color: var(--text-emphasis);
-            display: block;
             margin-top: 56px;
         }
 
         /* 4. ASYMMETRICAL LAYOUT & SPACING */
         .section-spacing {
-            margin-bottom: 25vh; /* Creates long pauses between chapters */
+            margin-bottom: 25vh; 
         }
 
-        /* Hero */
+        /* Asymmetrical Hero */
         .hero-section {
             height: 100vh;
             position: relative;
@@ -99,22 +97,22 @@
 
         .hero-content {
             position: absolute;
-            bottom: 20vh; /* Pushed to the lower part of the screen */
-            right: 10vw; /* Container is right-aligned */
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10vw; 
             max-width: 800px;
-            text-align: left; /* Text itself remains strictly left-aligned */
+            text-align: left; 
         }
 
         /* Architectural Text Boxes */
         .text-box {
             background-color: var(--bg-textbox);
-            padding: 8vw 10vw; /* Generous architectural padding */
+            padding: 8vw 10vw; 
             text-align: left;
             width: 75%;
             max-width: 900px;
         }
 
-        /* Staggering the boxes to create asymmetry */
         .box-left {
             margin-left: 5vw;
             margin-right: auto;
@@ -147,11 +145,11 @@
             display: block;
         }
 
-        .img-1 { width: 75%; margin-left: auto; margin-right: 5vw; } /* Right leaning */
-        .img-2 { width: 65%; margin-left: 5vw; margin-right: auto; } /* Left leaning */
-        .img-3 { width: 85%; margin: 0 auto; } /* Centered anchor */
+        .img-1 { width: 75%; margin-left: auto; margin-right: 5vw; } 
+        .img-2 { width: 65%; margin-left: 5vw; margin-right: auto; } 
+        .img-3 { width: 85%; margin: 0 auto; } 
 
-        /* 5. MOTION (Quiet fade in) */
+        /* 5. MOTION */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -172,12 +170,13 @@
             .hero-content {
                 right: 5vw;
                 left: 5vw;
+                top: auto;
                 bottom: 15vh;
+                transform: none;
             }
             .logo-container { top: 30px; left: 5vw; }
             .logo-container img { width: 100px; }
             
-            /* Reset staggered images for cleaner mobile reading */
             .img-1, .img-2, .img-3 {
                 width: 90%;
                 margin: 0 auto;
@@ -190,7 +189,7 @@
     <div class="background-texture"></div>
 
     <div class="logo-container">
-        <img src="DHYAI-logo.jpg" alt="DHYAI">
+        <img src="DHYAI-logo.png" alt="DHYAI">
     </div>
 
     <section class="hero-section fade-in">
@@ -214,7 +213,7 @@
             <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
             <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
         </div>
-        <img src="Process-Image-1.jpg" alt="Material Process" class="full-width-image section-spacing">
+        <img src="Process-Image-1.png" alt="Material Process" class="full-width-image section-spacing">
     </section>
 
     <section class="section-spacing fade-in">
@@ -222,9 +221,9 @@
             <h2>Objects in use</h2>
         </div>
         <div class="objects-gallery">
-            <img src="Object-Image-1.jpg" alt="Object in use" class="fade-in img-1">
-            <img src="Object-Image-2.jpg" alt="Pattern detail" class="fade-in img-2">
-            <img src="Object-Image-3.jpg" alt="Material detail" class="fade-in img-3">
+            <img src="Object-Image-1.png" alt="Object in use" class="fade-in img-1">
+            <img src="Object-Image-2.png" alt="Pattern detail" class="fade-in img-2">
+            <img src="Object-Image-3.png" alt="Material detail" class="fade-in img-3">
         </div>
     </section>
 
@@ -235,7 +234,7 @@
             <a href="#" class="contact-link">Call</a>
             <span class="end-statement">We respond personally.</span>
         </div>
-        <img src="Process-Image-2.jpg" alt="Block Printing Process" class="full-width-image" style="margin-top: 15vh; margin-bottom: 0;">
+        <img src="Process-Image-2.png" alt="Block Printing Process" class="full-width-image" style="margin-top: 15vh; margin-bottom: 0;">
     </section>
 
     <script>
