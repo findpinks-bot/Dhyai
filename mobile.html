@@ -43,24 +43,29 @@
             left: 24px;
             width: 120px;
             mix-blend-mode: multiply; /* Fixes any white background */
+            z-index: 100;
         }
 
-        /* MOBILE TYPOGRAPHY - Reduced by 2 points */
+        /* MOBILE TYPOGRAPHY */
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 30px; /* Section headings, was 32px */
+            font-size: 30px; 
             color: #322203;
             margin: 0 0 30px 0;
             line-height: 1.25;
             font-weight: 600;
         }
 
+        /* Hero strictly sized to fit on one line per sentence */
         .hero h2 {
-            font-size: 34px; /* Hero heading, was 36px */
+            font-size: clamp(16px, 5.5vw, 24px); 
+            line-height: 1.5;
+            width: 100%;
+            margin: 0;
         }
 
         p, a {
-            font-size: 16px; /* Body text, was 18px */
+            font-size: 16px; 
             line-height: 1.8;
             margin: 0 0 24px 0;
             text-decoration: none;
@@ -72,10 +77,10 @@
             color: #9e6821;
             display: block;
             margin-top: 40px;
-            font-size: 16px; /* Was 18px */
+            font-size: 16px; 
         }
 
-        /* MOBILE LAYOUT & SPACING */
+        /* MOBILE LAYOUT & STRICTLY UNIFORM SPACING */
         .content-container {
             padding: 0 24px;
             width: 100%;
@@ -83,18 +88,13 @@
         }
 
         .chapter-pause {
-            margin-bottom: 100px;
+            margin-bottom: 80px; /* Strictly uniform spacing between sections */
         }
 
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
-        }
-
-        .hero h2 {
-            width: 90%;
-            margin: 0;
         }
 
         /* MOBILE CONTENT BOX */
@@ -105,19 +105,19 @@
             box-sizing: border-box;
         }
 
-        /* MOBILE IMAGES */
+        /* UNIFORM IMAGES */
         .mobile-img {
             width: 100%;
             height: auto;
-            margin-top: 60px;
+            margin-top: 40px; /* Strictly uniform distance from box to image */
             display: block;
         }
 
         .gallery-wrap {
             display: flex;
             flex-direction: column;
-            gap: 60px;
-            margin-top: 60px;
+            gap: 40px; /* Strictly uniform stacking distance */
+            margin-top: 40px;
         }
 
         .gallery-wrap img {
@@ -125,6 +125,7 @@
             height: auto;
         }
 
+        /* FADE ANIMATION */
         .fade-in {
             opacity: 0;
             transform: translateY(15px);
@@ -143,7 +144,10 @@
 
     <div class="content-container">
         <section class="hero fade-in">
-            <h2>Time embodied in material.<br>Built to live with.</h2>
+            <h2>
+                <span style="white-space: nowrap;">Time embodied in material.</span><br>
+                <span style="white-space: nowrap;">Built to live with.</span>
+            </h2>
         </section>
 
         <section class="chapter-pause fade-in">
@@ -165,9 +169,7 @@
         </section>
 
         <section class="chapter-pause fade-in">
-            <div class="text-box">
-                <h2>Objects in use</h2>
-            </div>
+            <h2 style="padding-left: 30px; margin-bottom: 0;">Objects in use</h2>
             <div class="gallery-wrap">
                 <img src="Object-Image-1.png" alt="Object" class="fade-in">
                 <img src="Object-Image-2.png" alt="Detail" class="fade-in">
