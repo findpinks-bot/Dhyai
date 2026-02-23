@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
 
     <script>
         if (window.innerWidth > 768) {
@@ -18,7 +18,7 @@
     <style>
         /* MOBILE GLOBAL SETTINGS */
         :root {
-            --math-gap: 100px; /* The strict, singular vertical rhythm constant */
+            --math-gap: 100px; /* The strict vertical rhythm constant */
         }
 
         body {
@@ -55,33 +55,39 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 30px; 
             color: #322203;
-            margin: 0 0 30px 0;
+            margin: 0 0 24px 0; /* Tightened slightly against body text */
             line-height: 1.25;
             font-weight: 600;
+            text-align: left;
         }
 
-        /* Hero strictly sized to fit on one line per sentence */
+        /* Hero strictly sized and bolder to fit on one line per sentence */
         .hero h2 {
-            font-size: clamp(16px, 5.5vw, 24px); 
-            line-height: 1.5;
+            font-size: clamp(22px, 6.5vw, 26px); 
+            font-weight: 700; /* Increased weight so it doesn't look absent */
+            line-height: 1.4;
             width: 100%;
             margin: 0;
         }
 
+        /* Body text tightened vertically to stop the scattered feeling */
         p, a {
             font-size: 16px; 
-            line-height: 1.8;
-            margin: 0 0 24px 0;
+            line-height: 1.5; /* Reduced from 1.8 */
+            margin: 0 0 20px 0;
             text-decoration: none;
             color: inherit;
             display: block;
+            text-align: left; /* Explicitly locked left */
         }
 
         .end-statement {
             color: #9e6821;
             display: block;
-            margin-top: 40px;
+            margin-top: 36px;
             font-size: 16px; 
+            text-align: left;
+            line-height: 1.5;
         }
 
         /* MOBILE LAYOUT & STRICTLY UNIFORM SPACING */
@@ -92,7 +98,7 @@
         }
 
         .chapter-pause {
-            margin-bottom: var(--math-gap); /* Standardized section gap */
+            margin-bottom: var(--math-gap); 
         }
 
         .hero {
@@ -113,15 +119,15 @@
         .mobile-img {
             width: 100%;
             height: auto;
-            margin-top: var(--math-gap); /* Exact same standardized gap from the text box */
+            margin-top: var(--math-gap); 
             display: block;
         }
 
         .gallery-wrap {
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Internal image stacking distance */
-            margin-top: 24px; /* Tightly couples the gallery to its heading */
+            gap: 40px; 
+            margin-top: 24px; 
         }
 
         .gallery-wrap img {
