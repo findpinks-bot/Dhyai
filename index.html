@@ -18,8 +18,8 @@
     <style>
         /* DESKTOP STRICT GRID SETTINGS */
         :root {
-            --grid-line: 15vw; /* The unshakeable left anchor for desktop */
-            --chapter-pause: 25vh; /* Deep, unhurried vertical margins */
+            --grid-line: 15vw; 
+            --chapter-pause: 25vh; 
         }
 
         body {
@@ -40,16 +40,6 @@
             background-position: center;
             opacity: 0.15;
             z-index: -1;
-        }
-
-        /* FIXED LOGO BEHAVIOR */
-        .logo {
-            position: absolute; /* Changed from fixed so it stays in the hero section */
-            top: 60px;
-            left: var(--grid-line); 
-            width: 140px;
-            mix-blend-mode: multiply;
-            z-index: 100;
         }
 
         /* STRICT TEXT HIERARCHY LOCK */
@@ -76,7 +66,9 @@
             font-weight: 600;
         }
 
+        /* HERO SECTION (Now acts as the master container for the logo) */
         .hero {
+            position: relative; /* Crucial: Traps the absolute logo inside this section */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -85,6 +77,16 @@
             padding-left: var(--grid-line);
             padding-right: var(--grid-line);
             box-sizing: border-box;
+        }
+
+        /* BULLETPROOF LOGO (Locked to the top of the hero section only) */
+        .logo {
+            position: absolute; 
+            top: 60px;
+            left: var(--grid-line); 
+            width: 140px;
+            mix-blend-mode: multiply;
+            z-index: 10;
         }
 
         .hero h2 {
@@ -131,7 +133,7 @@
             margin-bottom: var(--chapter-pause); 
         }
 
-        /* THE MOMENT OF BOLDNESS: Full Bleed Images */
+        /* FULL BLEED IMAGES */
         .full-bleed {
             width: 100vw;
             height: auto;
@@ -172,9 +174,9 @@
 <body>
 
     <div class="bg-texture"></div>
-    <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
 
     <section class="hero fade-in">
+        <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
         <h2>
             Time embodied in material.<br>
             Built to live with.
