@@ -19,24 +19,23 @@
             --text-emphasis: #9e6821;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             background-color: var(--bg-base);
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            overflow: hidden; /* Prevents long scrolling */
             font-family: 'Tenor Sans', sans-serif;
             color: var(--text-body);
+            display: flex; /* Sets up the left-nav / right-content split */
         }
 
-        /* 2. PERSISTENT BACKGROUND (15% Opacity) */
+        /* 2. PERSISTENT BACKGROUND (Spans entire screen) */
         .background-texture {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100vw;
             height: 100vh;
             background-image: url('Hero-Image.png');
@@ -46,141 +45,139 @@
             z-index: -1;
         }
 
-        /* Fixed Logo */
-        .logo-container {
-            position: fixed;
-            top: 50px;
-            left: 5vw;
-            z-index: 100;
-        }
-
-        .logo-container img {
-            width: 140px;
-            height: auto;
-        }
-
         /* 3. RESPONSIVE TYPOGRAPHY */
         h1, h2 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
-            font-size: clamp(2.5rem, 4.5vw, 64px); 
+            font-size: clamp(2rem, 3.5vw, 56px); 
             color: var(--text-heading);
             margin: 0 0 40px 0;
             line-height: 1.15;
         }
 
-        p, .contact-link, .end-statement {
-            font-size: clamp(1.1rem, 1.8vw, 26px);
+        p, .end-statement {
+            font-size: clamp(1.1rem, 1.5vw, 22px);
             font-weight: 400;
             line-height: 1.8;
             margin: 0 0 24px 0;
             display: block;
-            text-decoration: none;
             color: var(--text-body);
         }
 
         .end-statement {
             color: var(--text-emphasis);
-            margin-top: 56px;
+            margin-top: 48px;
         }
 
-        /* 4. ASYMMETRICAL LAYOUT & SPACING */
-        .section-spacing {
-            margin-bottom: 25vh; 
-        }
-
-        /* Asymmetrical Hero */
-        .hero-section {
+        /* 4. LEFT NAVIGATION SIDEBAR */
+        .sidebar {
+            width: 25vw;
+            min-width: 250px;
             height: 100vh;
-            position: relative;
+            padding: 50px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
         }
 
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 10vw; 
-            max-width: 800px;
-            text-align: left; 
+        .logo-container img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 80px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 18px;
+            color: var(--text-body);
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.6;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-links button:hover, .nav-links button.active-link {
+            opacity: 1;
+            color: var(--text-heading);
+        }
+
+        /* 5. RIGHT CONTENT AREA (The Pages) */
+        .content-area {
+            width: 75vw;
+            height: 100vh;
+            overflow-y: auto; /* Allows gentle scrolling only within the content box if needed */
+            display: flex;
+            align-items: center;
+            padding: 50px 10vw 50px 0;
+            box-sizing: border-box;
         }
 
         /* Architectural Text Boxes */
         .text-box {
             background-color: var(--bg-textbox);
-            padding: 8vw 10vw; 
+            padding: 6vw 8vw; 
             text-align: left;
-            width: 75%;
+            width: 100%;
             max-width: 900px;
         }
 
-        .box-left {
-            margin-left: 5vw;
-            margin-right: auto;
-        }
-
-        .box-right {
-            margin-left: auto;
-            margin-right: 5vw;
-        }
-
-        /* Image Blocks */
-        .full-width-image {
-            width: 100vw;
+        /* Scaled-down Editorial Images */
+        .editorial-image {
+            width: 100%;
+            max-width: 500px; /* Limits the size completely */
             height: auto;
             display: block;
-            margin-top: 15vh;
+            margin-top: 60px;
         }
 
-        /* Staggered Object Gallery */
         .objects-gallery {
             display: flex;
-            flex-direction: column;
-            gap: 15vh;
-            margin-top: 10vh;
-            width: 100%;
+            flex-direction: row; /* Puts images side by side if there is room */
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .objects-gallery img {
+            max-width: 350px; /* Even smaller for the gallery */
             height: auto;
+        }
+
+        /* 6. PAGE BEHAVIOR (The Fade Effect) */
+        .page {
+            display: none; /* Hides all pages by default */
+            width: 100%;
+        }
+
+        .page.active {
             display: block;
+            animation: quietFade 1.2s ease forwards;
         }
 
-        .img-1 { width: 75%; margin-left: auto; margin-right: 5vw; } 
-        .img-2 { width: 65%; margin-left: 5vw; margin-right: auto; } 
-        .img-3 { width: 85%; margin: 0 auto; } 
-
-        /* 5. MOTION */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.2s ease, transform 1.2s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes quietFade {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Mobile Refinement */
-        @media (max-width: 768px) {
-            .text-box {
-                width: 85%;
-                padding: 60px 30px;
-            }
-            .hero-content {
-                right: 5vw;
-                left: 5vw;
-                top: auto;
-                bottom: 15vh;
-                transform: none;
-            }
-            .logo-container { top: 30px; left: 5vw; }
-            .logo-container img { width: 100px; }
-            
-            .img-1, .img-2, .img-3 {
-                width: 90%;
-                margin: 0 auto;
-            }
+        @media (max-width: 800px) {
+            body { flex-direction: column; overflow-y: auto; }
+            .sidebar { width: 100%; height: auto; padding: 30px; flex-direction: row; justify-content: space-between; align-items: center; }
+            .logo-container img { margin-bottom: 0; width: 100px; }
+            .nav-links { flex-direction: row; flex-wrap: wrap; gap: 15px; }
+            .content-area { width: 100%; height: auto; padding: 30px; overflow-y: visible; }
+            .text-box { padding: 40px 30px; }
         }
     </style>
 </head>
@@ -188,69 +185,85 @@
 
     <div class="background-texture"></div>
 
-    <div class="logo-container">
-        <img src="DHYAI-logo.png" alt="DHYAI">
-    </div>
+    <nav class="sidebar">
+        <div class="logo-container" onclick="openPage('home')">
+            <img src="DHYAI-logo.png" alt="DHYAI">
+        </div>
+        <div class="nav-links">
+            <button onclick="openPage('about')" id="btn-about">About</button>
+            <button onclick="openPage('process')" id="btn-process">Process & Materials</button>
+            <button onclick="openPage('objects')" id="btn-objects">Objects in use</button>
+            <button onclick="openPage('contact')" id="btn-contact">Contact</button>
+        </div>
+    </nav>
 
-    <section class="hero-section fade-in">
-        <div class="hero-content">
-            <h2>Time embodied in material.<br>Built to live with.</h2>
-        </div>
-    </section>
+    <main class="content-area">
 
-    <section class="section-spacing fade-in">
-        <div class="text-box box-left">
-            <h2>About</h2>
-            <p>DHYAI designs objects for everyday life.</p>
-            <p>Design is integrated.<br>Objects endure.</p>
-            <span class="end-statement">They remain.</span>
-        </div>
-    </section>
+        <section id="home" class="page active">
+            <div class="text-box" style="background: transparent; padding: 0;">
+                <h2 style="font-size: clamp(2.5rem, 5vw, 72px);">Time embodied in material.<br>Built to live with.</h2>
+            </div>
+        </section>
 
-    <section class="fade-in">
-        <div class="text-box box-right">
-            <h2>Process & Materials</h2>
-            <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
-            <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-        </div>
-        <img src="Process-Image-1.png" alt="Material Process" class="full-width-image section-spacing">
-    </section>
+        <section id="about" class="page">
+            <div class="text-box">
+                <h2>About</h2>
+                <p>DHYAI designs objects for everyday life.</p>
+                <p>Design is integrated.<br>Objects endure.</p>
+                <span class="end-statement">They remain.</span>
+            </div>
+        </section>
 
-    <section class="section-spacing fade-in">
-        <div class="text-box box-left">
-            <h2>Objects in use</h2>
-        </div>
-        <div class="objects-gallery">
-            <img src="Object-Image-1.png" alt="Object in use" class="fade-in img-1">
-            <img src="Object-Image-2.png" alt="Pattern detail" class="fade-in img-2">
-            <img src="Object-Image-3.png" alt="Material detail" class="fade-in img-3">
-        </div>
-    </section>
+        <section id="process" class="page">
+            <div class="text-box">
+                <h2>Process & Materials</h2>
+                <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
+                <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
+                <img src="Process-Image-1.png" alt="Material Process" class="editorial-image">
+            </div>
+        </section>
 
-    <section class="fade-in" style="margin-bottom: 0;">
-        <div class="text-box box-right">
-            <h2>Contact</h2>
-            <a href="#" class="contact-link">WhatsApp</a>
-            <a href="#" class="contact-link">Call</a>
-            <span class="end-statement">We respond personally.</span>
-        </div>
-        <img src="Process-Image-2.png" alt="Block Printing Process" class="full-width-image" style="margin-top: 15vh; margin-bottom: 0;">
-    </section>
+        <section id="objects" class="page">
+            <div class="text-box">
+                <h2>Objects in use</h2>
+                <div class="objects-gallery">
+                    <img src="Object-Image-1.png" alt="Object in use">
+                    <img src="Object-Image-2.png" alt="Pattern detail">
+                    <img src="Object-Image-3.png" alt="Material detail">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page">
+            <div class="text-box">
+                <h2>Contact</h2>
+                <p style="cursor: pointer;">WhatsApp</p>
+                <p style="cursor: pointer;">Call</p>
+                <span class="end-statement">We respond personally.</span>
+                <img src="Process-Image-2.png" alt="Block Printing Process" class="editorial-image">
+            </div>
+        </section>
+
+    </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in').forEach(element => {
-                observer.observe(element);
+        function openPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-        });
+            // Show the clicked page
+            document.getElementById(pageName).classList.add('active');
+
+            // Update navigation link opacities
+            document.querySelectorAll('.nav-links button').forEach(btn => {
+                btn.classList.remove('active-link');
+            });
+            // Don't highlight a button if they clicked the logo to go home
+            if(pageName !== 'home') {
+                document.getElementById('btn-' + pageName).classList.add('active-link');
+            }
+        }
     </script>
 </body>
 </html>
