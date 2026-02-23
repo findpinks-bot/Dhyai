@@ -4,236 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHYAI</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
     <script>
-        if (window.innerWidth <= 768) {
-            window.location.href = "mobile.html";
-        }
+        if (window.innerWidth <= 768) { window.location.href = "mobile.html"; }
     </script>
 
     <style>
-        /* DESKTOP STRICT GRID SETTINGS */
+        /* GLOBAL RULES */
         :root {
-            --grid-line: 15vw; 
-            --chapter-pause: 25vh; 
+            --bg-clean: #F5F2EC;
+            --text-dark: #2B2118;
+            --accent-gold: #9e6821;
+            /* Fixed Spacing Scale */
+            --s8: 8px; --s16: 16px; --s32: 32px; --s64: 64px; --s96: 96px; --s160: 160px;
         }
 
         body {
-            background-color: #fffbef;
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg-clean);
+            margin: 0; padding: 0;
             font-family: 'Tenor Sans', sans-serif;
-            color: #5c3a05;
+            color: var(--text-dark);
             overflow-x: hidden;
-            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .bg-texture {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('Hero-Image.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        /* STRICT TEXT HIERARCHY LOCK */
-        .text-block {
-            display: flex;
-            flex-direction: column;
-            gap: 32px; 
-            max-width: 700px; 
-        }
-
-        .text-block h2, 
-        .text-block p, 
-        .text-block a, 
-        .text-block span {
-            margin: 0 !important; 
-        }
-
-        /* TYPOGRAPHY */
-        h2 {
+        h1, h2, .stark-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 56px; 
-            color: #322203;
-            line-height: 1.15;
             font-weight: 600;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            position: relative; 
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; 
-            padding-bottom: 25vh; 
-            padding-left: var(--grid-line);
-            padding-right: var(--grid-line);
-            box-sizing: border-box;
-        }
-
-        /* BULLETPROOF LOGO (Corner oriented, 28% larger) */
-        .logo {
-            position: absolute; 
-            top: 60px;
-            left: 5vw; /* Left corner oriented */
-            width: 180px; /* Scaled up from 140px */
-            mix-blend-mode: multiply;
-            z-index: 10;
-        }
-
-        .hero h2 {
-            font-size: clamp(40px, 5vw, 62px); 
-            line-height: 1.3;
             margin: 0;
-            letter-spacing: 0.02em;
         }
 
-        p, a {
-            font-size: 24px; 
-            line-height: 1.8;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            letter-spacing: 0.02em;
-            word-spacing: 0.08em;
+        p, a { font-size: 18px; line-height: 1.6; margin: 0; text-decoration: none; color: inherit; }
+
+        /* DESKTOP CONTAINER */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 80px;
         }
 
-        a:hover {
-            color: #322203; 
-        }
-
-        .tight-stack {
-            line-height: 1.35; 
-        }
-
-        .end-statement {
-            color: #9e6821;
-            display: block;
-            font-size: 24px; 
-            letter-spacing: 0.02em;
-            word-spacing: 0.08em;
-        }
-
-        /* LAYOUT ARCHITECTURE */
-        .content-container {
-            padding: 0 var(--grid-line); 
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .chapter {
-            margin-bottom: var(--chapter-pause); 
-        }
-
-        /* FULL BLEED IMAGES */
-        .full-bleed {
-            width: 100vw;
-            height: auto;
+        /* 1. HERO (Desktop) */
+        .hero {
+            height: 100vh;
             position: relative;
-            left: calc(-1 * var(--grid-line)); 
-            margin-top: 15vh;
-            display: block;
+        }
+        .logo {
+            position: absolute;
+            top: 48px; left: 80px;
+            width: 160px;
+            mix-blend-mode: multiply;
+        }
+        .hero-tagline {
+            position: absolute;
+            top: 60%;
+            left: 80px;
+            font-size: 72px; /* Scale: 64-80px */
+            line-height: 1.1;
+            max-width: 800px;
         }
 
-        /* EDITORIAL GALLERY */
-        .gallery-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 15vh; 
-            margin-top: 80px; 
-        }
-
-        .gallery-wrap img {
-            height: auto;
-            display: block;
-        }
+        /* 2. OBJECTS IN USE (Desktop) */
+        .objects-section { margin-top: var(--s160); }
+        .section-heading { font-size: 48px; margin-bottom: var(--s64); }
         
-        .img-1 { max-width: 550px; margin-left: 10vw; } 
-        .img-2 { max-width: 450px; margin-left: 0; } 
-        .img-3 { max-width: 650px; margin-left: 5vw; } 
+        .full-bleed-img {
+            width: 100vw;
+            height: 70vh;
+            margin-left: calc(-50vw + 50%);
+            object-fit: cover;
+            display: block;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s32);
+            margin-top: var(--s32);
+        }
+        .grid-img { width: 100%; height: 50vh; object-fit: cover; }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s ease, transform 1.5s ease;
+        /* 3. STARK SECTION */
+        .stark-section {
+            background-color: #FFFFFF;
+            padding: 200px 0;
+            margin-top: var(--s160);
+            text-align: center;
         }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .stark-text {
+            font-size: 72px;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.1;
+            text-transform: uppercase;
         }
+
+        /* 4. ASYMMETRICAL SECTIONS */
+        .asym-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: var(--s160);
+            align-items: flex-start;
+        }
+        .text-restrained { max-width: 500px; }
+
+        /* FADE ANIMATION */
+        .fade { opacity: 0; transition: opacity 0.3s ease; }
+        .fade.visible { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <div class="bg-texture"></div>
+    <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
 
-    <section class="hero fade-in">
-        <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
-        <h2>
-            Time embodied in material.<br>
-            Built to live with.
-        </h2>
+    <section class="hero container">
+        <h1 class="hero-tagline">Time embodied in material.<br>Built to live with.</h1>
     </section>
 
-    <div class="content-container">
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>About</h2>
-                <p>DHYAI designs objects for everyday life.</p>
-                <p class="tight-stack">Design is integrated.<br>Objects endure.</p>
-                <span class="end-statement">They remain.</span>
-            </div>
-        </section>
+    <section class="objects-section container">
+        <h2 class="section-heading">Objects in use</h2>
+        <img src="Object-Image-1.png" class="full-bleed-img fade">
+        <div class="image-grid">
+            <img src="Object-Image-2.png" class="grid-img fade">
+            <img src="Object-Image-3.png" class="grid-img fade">
+        </div>
+    </section>
 
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>Process & Materials</h2>
-                <p class="tight-stack">Material determines form.<br>Time determines character.</p>
-                <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-            </div>
-            <img src="Process-Image-1.png" alt="Process" class="full-bleed fade-in">
-        </section>
+    <section class="stark-section">
+        <div class="stark-text fade">
+            Material determines form.<br>Time determines character.
+        </div>
+    </section>
 
-        <section class="chapter fade-in">
-            <div class="text-block">
-                <h2>Objects in use</h2>
-            </div>
-            <div class="gallery-wrap">
-                <img src="Object-Image-1.png" alt="Object" class="fade-in img-1">
-                <img src="Object-Image-2.png" alt="Detail" class="fade-in img-2">
-                <img src="Object-Image-3.png" alt="Material" class="fade-in img-3">
-            </div>
-        </section>
+    <section class="asym-grid container">
+        <h2 class="section-heading">Process & Materials</h2>
+        <div class="text-restrained fade">
+            <p>Every object begins with material—its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
+        </div>
+    </section>
 
-        <section class="chapter fade-in" style="margin-bottom: 0;">
-            <div class="text-block">
-                <h2>Contact</h2>
-                <p class="tight-stack">
-                    <a href="#">WhatsApp</a><br>
-                    <a href="#">Call</a><br>
-                    <a href="#">Email</a>
-                </p>
-                <span class="end-statement">We respond personally.</span>
-            </div>
-            <img src="Process-Image-2.png" alt="Process" class="full-bleed fade-in" style="margin-bottom: 0;">
-        </section>
-    </div>
+    <img src="Process-Image-1.png" class="full-bleed-img fade" style="margin-top: var(--s160);">
+
+    <section class="asym-grid container">
+        <div class="text-restrained fade">
+            <h2 class="section-heading">About</h2>
+            <p>DHYAI designs objects for everyday life. Design is integrated. Objects endure. They remain.</p>
+        </div>
+        <img src="Object-Image-3.png" class="grid-img fade">
+    </section>
+
+    <section class="container fade" style="margin: var(--s160) 0;">
+        <h2 class="section-heading">Contact</h2>
+        <div style="display: flex; flex-direction: column; gap: var(--s32);">
+            <a href="#" style="font-size: 32px;">WhatsApp</a>
+            <a href="#" style="font-size: 32px;">Call</a>
+            <a href="#" style="font-size: 32px;">Email</a>
+        </div>
+    </section>
 
     <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold: 0.1});
+        document.querySelectorAll('.fade').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
