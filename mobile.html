@@ -17,6 +17,10 @@
 
     <style>
         /* MOBILE GLOBAL SETTINGS */
+        :root {
+            --math-gap: 100px; /* The strict, singular vertical rhythm constant */
+        }
+
         body {
             background-color: #fffbef;
             margin: 0;
@@ -88,7 +92,7 @@
         }
 
         .chapter-pause {
-            margin-bottom: 80px; /* Strictly uniform spacing between sections */
+            margin-bottom: var(--math-gap); /* Standardized section gap */
         }
 
         .hero {
@@ -109,15 +113,15 @@
         .mobile-img {
             width: 100%;
             height: auto;
-            margin-top: 40px; /* Strictly uniform distance from box to image */
+            margin-top: var(--math-gap); /* Exact same standardized gap from the text box */
             display: block;
         }
 
         .gallery-wrap {
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Strictly uniform stacking distance */
-            margin-top: 40px;
+            gap: 40px; /* Internal image stacking distance */
+            margin-top: 24px; /* Tightly couples the gallery to its heading */
         }
 
         .gallery-wrap img {
@@ -177,7 +181,7 @@
             </div>
         </section>
 
-        <section class="chapter-pause fade-in">
+        <section class="chapter-pause fade-in" style="margin-bottom: 50px;">
             <div class="text-box">
                 <h2>Contact</h2>
                 <a href="#">WhatsApp</a>
