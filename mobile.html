@@ -42,20 +42,25 @@
             top: 30px;
             left: 24px;
             width: 120px;
-            mix-blend-mode: multiply;
+            mix-blend-mode: multiply; /* Fixes any white background */
         }
 
-        /* MOBILE TYPOGRAPHY */
+        /* MOBILE TYPOGRAPHY - Reduced by 2 points */
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
+            font-size: 30px; /* Section headings, was 32px */
             color: #322203;
             margin: 0 0 30px 0;
             line-height: 1.25;
+            font-weight: 600;
+        }
+
+        .hero h2 {
+            font-size: 34px; /* Hero heading, was 36px */
         }
 
         p, a {
-            font-size: 18px;
+            font-size: 16px; /* Body text, was 18px */
             line-height: 1.8;
             margin: 0 0 24px 0;
             text-decoration: none;
@@ -67,7 +72,7 @@
             color: #9e6821;
             display: block;
             margin-top: 40px;
-            font-size: 18px;
+            font-size: 16px; /* Was 18px */
         }
 
         /* MOBILE LAYOUT & SPACING */
@@ -123,7 +128,7 @@
         .fade-in {
             opacity: 0;
             transform: translateY(15px);
-            transition: opacity 1s ease, transform 1s ease;
+            transition: opacity 1.2s ease, transform 1.2s ease;
         }
         .fade-in.visible {
             opacity: 1;
