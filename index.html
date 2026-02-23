@@ -10,34 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
     <style>
-        /* 1. GLOBAL SETTINGS & COLORS */
-        :root {
-            --bg-base: #fffbef;
-            --bg-textbox: #d9d5cb;
-            --text-heading: #322203;
-            --text-body: #5c3a05;
-            --text-emphasis: #9e6821;
-        }
-
+        /* GLOBAL SETTINGS */
         body {
-            background-color: var(--bg-base);
+            background-color: #fffbef;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevents long scrolling */
+            overflow: hidden; /* STRICTLY disables scrolling */
             font-family: 'Tenor Sans', sans-serif;
-            color: var(--text-body);
-            display: flex; /* Sets up the left-nav / right-content split */
+            color: #5c3a05;
         }
 
-        /* 2. PERSISTENT BACKGROUND (Spans entire screen) */
-        .background-texture {
+        /* PERSISTENT TEXTURE BACKGROUND */
+        .bg-texture {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: url('Hero-Image.png');
             background-size: cover;
             background-position: center;
@@ -45,224 +31,186 @@
             z-index: -1;
         }
 
-        /* 3. RESPONSIVE TYPOGRAPHY */
-        h1, h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            font-size: clamp(2rem, 3.5vw, 56px); 
-            color: var(--text-heading);
-            margin: 0 0 40px 0;
-            line-height: 1.15;
-        }
-
-        p, .end-statement {
-            font-size: clamp(1.1rem, 1.5vw, 22px);
-            font-weight: 400;
-            line-height: 1.8;
-            margin: 0 0 24px 0;
-            display: block;
-            color: var(--text-body);
-        }
-
-        .end-statement {
-            color: var(--text-emphasis);
-            margin-top: 48px;
-        }
-
-        /* 4. LEFT NAVIGATION SIDEBAR */
+        /* FIXED LEFT MENU */
         .sidebar {
-            width: 25vw;
-            min-width: 250px;
+            position: fixed;
+            top: 0; left: 0;
+            width: 300px;
             height: 100vh;
-            padding: 50px;
+            padding: 60px 50px;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
+            border-right: 1px solid rgba(92, 58, 5, 0.1); /* Subtle divider */
+            z-index: 10;
         }
 
-        .logo-container img {
-            width: 120px;
+        /* MAGIC LOGO FIX */
+        .logo {
+            width: 140px;
             height: auto;
             margin-bottom: 80px;
-            cursor: pointer;
+            mix-blend-mode: multiply; /* Instantly removes the white background */
         }
 
-        .nav-links {
+        .menu-links {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 25px;
         }
 
-        .nav-links button {
-            background: none;
-            border: none;
-            text-align: left;
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 18px;
-            color: var(--text-body);
+        .menu-links span {
+            font-size: 20px;
             cursor: pointer;
-            padding: 0;
-            opacity: 0.6;
-            transition: opacity 0.4s ease;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-links button:hover, .nav-links button.active-link {
+        .menu-links span.active {
             opacity: 1;
-            color: var(--text-heading);
+            font-weight: bold;
+            color: #322203;
         }
 
-        /* 5. RIGHT CONTENT AREA (The Pages) */
+        /* RIGHT CONTENT AREA */
         .content-area {
-            width: 75vw;
+            margin-left: 300px;
+            width: calc(100vw - 300px);
             height: 100vh;
-            overflow-y: auto; /* Allows gentle scrolling only within the content box if needed */
-            display: flex;
-            align-items: center;
-            padding: 50px 10vw 50px 0;
-            box-sizing: border-box;
+            position: relative;
         }
 
-        /* Architectural Text Boxes */
-        .text-box {
-            background-color: var(--bg-textbox);
-            padding: 6vw 8vw; 
-            text-align: left;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        /* Scaled-down Editorial Images */
-        .editorial-image {
-            width: 100%;
-            max-width: 500px; /* Limits the size completely */
-            height: auto;
-            display: block;
-            margin-top: 60px;
-        }
-
-        .objects-gallery {
-            display: flex;
-            flex-direction: row; /* Puts images side by side if there is room */
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .objects-gallery img {
-            max-width: 350px; /* Even smaller for the gallery */
-            height: auto;
-        }
-
-        /* 6. PAGE BEHAVIOR (The Fade Effect) */
+        /* THE PAGES */
         .page {
-            display: none; /* Hides all pages by default */
-            width: 100%;
+            display: none; /* Hides all pages */
+            position: absolute;
+            top: 50%; left: 45%; /* Centers the text box */
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            background-color: transparent;
         }
 
         .page.active {
+            display: block; /* Shows only the active page */
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* TYPOGRAPHY */
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            color: #322203;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+        }
+
+        p {
+            font-size: 24px;
+            line-height: 1.7;
+            margin: 0 0 20px 0;
+        }
+
+        .end-statement {
+            color: #9e6821;
             display: block;
-            animation: quietFade 1.2s ease forwards;
+            margin-top: 40px;
+            font-size: 24px;
         }
 
-        @keyframes quietFade {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* REDUCED EDITORIAL IMAGES */
+        .editorial-image {
+            width: 100%;
+            max-width: 400px; /* Strictly limits image size */
+            height: auto;
+            margin-top: 40px;
+            display: block;
         }
 
-        /* Mobile Refinement */
-        @media (max-width: 800px) {
-            body { flex-direction: column; overflow-y: auto; }
-            .sidebar { width: 100%; height: auto; padding: 30px; flex-direction: row; justify-content: space-between; align-items: center; }
-            .logo-container img { margin-bottom: 0; width: 100px; }
-            .nav-links { flex-direction: row; flex-wrap: wrap; gap: 15px; }
-            .content-area { width: 100%; height: auto; padding: 30px; overflow-y: visible; }
-            .text-box { padding: 40px 30px; }
+        .gallery {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
         }
+
+        .gallery img {
+            max-width: 250px; /* Highly reduced stacked images */
+            height: auto;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="background-texture"></div>
+    <div class="bg-texture"></div>
 
-    <nav class="sidebar">
-        <div class="logo-container" onclick="openPage('home')">
-            <img src="DHYAI-logo.png" alt="DHYAI">
+    <div class="sidebar">
+        <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
+        <div class="menu-links">
+            <span class="active" onclick="openPage('home', this)">Home</span>
+            <span onclick="openPage('about', this)">About</span>
+            <span onclick="openPage('process', this)">Process & Materials</span>
+            <span onclick="openPage('objects', this)">Objects in use</span>
+            <span onclick="openPage('contact', this)">Contact</span>
         </div>
-        <div class="nav-links">
-            <button onclick="openPage('about')" id="btn-about">About</button>
-            <button onclick="openPage('process')" id="btn-process">Process & Materials</button>
-            <button onclick="openPage('objects')" id="btn-objects">Objects in use</button>
-            <button onclick="openPage('contact')" id="btn-contact">Contact</button>
+    </div>
+
+    <div class="content-area">
+
+        <div id="home" class="page active">
+            <h2>Time embodied in material.<br>Built to live with.</h2>
         </div>
-    </nav>
 
-    <main class="content-area">
+        <div id="about" class="page">
+            <h2>About</h2>
+            <p>DHYAI designs objects for everyday life.</p>
+            <p>Design is integrated.<br>Objects endure.</p>
+            <span class="end-statement">They remain.</span>
+        </div>
 
-        <section id="home" class="page active">
-            <div class="text-box" style="background: transparent; padding: 0;">
-                <h2 style="font-size: clamp(2.5rem, 5vw, 72px);">Time embodied in material.<br>Built to live with.</h2>
+        <div id="process" class="page">
+            <h2>Process & Materials</h2>
+            <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
+            <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
+            <img src="Process-Image-1.png" alt="Material" class="editorial-image">
+        </div>
+
+        <div id="objects" class="page">
+            <h2>Objects in use</h2>
+            <div class="gallery">
+                <img src="Object-Image-1.png" alt="Detail 1">
+                <img src="Object-Image-2.png" alt="Detail 2">
+                <img src="Object-Image-3.png" alt="Detail 3">
             </div>
-        </section>
+        </div>
 
-        <section id="about" class="page">
-            <div class="text-box">
-                <h2>About</h2>
-                <p>DHYAI designs objects for everyday life.</p>
-                <p>Design is integrated.<br>Objects endure.</p>
-                <span class="end-statement">They remain.</span>
-            </div>
-        </section>
+        <div id="contact" class="page">
+            <h2>Contact</h2>
+            <p>WhatsApp</p>
+            <p>Call</p>
+            <span class="end-statement">We respond personally.</span>
+            <img src="Process-Image-2.png" alt="Process" class="editorial-image">
+        </div>
 
-        <section id="process" class="page">
-            <div class="text-box">
-                <h2>Process & Materials</h2>
-                <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
-                <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-                <img src="Process-Image-1.png" alt="Material Process" class="editorial-image">
-            </div>
-        </section>
-
-        <section id="objects" class="page">
-            <div class="text-box">
-                <h2>Objects in use</h2>
-                <div class="objects-gallery">
-                    <img src="Object-Image-1.png" alt="Object in use">
-                    <img src="Object-Image-2.png" alt="Pattern detail">
-                    <img src="Object-Image-3.png" alt="Material detail">
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="page">
-            <div class="text-box">
-                <h2>Contact</h2>
-                <p style="cursor: pointer;">WhatsApp</p>
-                <p style="cursor: pointer;">Call</p>
-                <span class="end-statement">We respond personally.</span>
-                <img src="Process-Image-2.png" alt="Block Printing Process" class="editorial-image">
-            </div>
-        </section>
-
-    </main>
+    </div>
 
     <script>
-        function openPage(pageName) {
+        function openPage(pageId, element) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            // Show the clicked page
-            document.getElementById(pageName).classList.add('active');
+            // Show clicked page
+            document.getElementById(pageId).classList.add('active');
 
-            // Update navigation link opacities
-            document.querySelectorAll('.nav-links button').forEach(btn => {
-                btn.classList.remove('active-link');
+            // Update menu highlighting
+            document.querySelectorAll('.menu-links span').forEach(link => {
+                link.classList.remove('active');
             });
-            // Don't highlight a button if they clicked the logo to go home
-            if(pageName !== 'home') {
-                document.getElementById('btn-' + pageName).classList.add('active-link');
-            }
+            element.classList.add('active');
         }
     </script>
 </body>
