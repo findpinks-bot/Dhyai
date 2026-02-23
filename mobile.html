@@ -16,10 +16,10 @@
     </script>
 
     <style>
-        /* MOBILE STRICT GRID SETTINGS */
+        /* MOBILE GLOBAL SETTINGS - The Discipline */
         :root {
-            --grid-line: 8vw; /* The unshakeable left anchor */
-            --chapter-pause: 20vh; /* Massive vertical margins */
+            --math-gap: 15vh; /* Massive, unforgiving vertical spacing */
+            --grid-edge: 24px; /* The strict invisible anchor line */
         }
 
         body {
@@ -45,99 +45,109 @@
         .logo {
             position: absolute;
             top: 40px;
-            left: var(--grid-line); /* Anchored strictly to the grid */
+            left: var(--grid-edge);
             width: 120px;
-            mix-blend-mode: multiply;
+            mix-blend-mode: multiply; 
             z-index: 100;
         }
 
-        /* TYPOGRAPHY */
+        /* TYPOGRAPHY - Quiet, High Authority */
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 32px; 
+            font-size: 28px; 
             color: #322203;
-            margin: 0 0 32px 0;
+            margin: 0 0 40px 0; /* Huge gap after heading */
             line-height: 1.2;
             font-weight: 600;
+            letter-spacing: 0.02em;
         }
 
-        /* Hero: Lowered, heavy, anchored */
+        /* Hero Text - Pushed low, commanding the screen */
         .hero {
-            height: 100vh;
+            height: 90vh; /* Deliberately not 100vh, leaving tension at the bottom */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Pushes text to the lower edge */
-            padding-bottom: 20vh; 
-            padding-left: var(--grid-line);
-            padding-right: var(--grid-line);
+            justify-content: flex-end; /* Anchors text to the bottom */
+            padding: 0 var(--grid-edge);
             box-sizing: border-box;
         }
 
         .hero h2 {
-            font-size: 26px; /* Commands through space, not just size */
-            line-height: 1.5;
+            font-size: clamp(18px, 5.5vw, 24px); 
+            line-height: 1.6;
+            width: 100%;
             margin: 0;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.04em; /* Wider tracking for authority */
         }
 
         p, a {
-            font-size: 16px; 
-            line-height: 1.8;
-            margin: 0 0 24px 0;
+            font-size: 15px; /* Scaled down for elegance */
+            line-height: 2; /* Massive line height for slow reading */
+            letter-spacing: 0.03em;
+            word-spacing: 0.1em;
+            margin: 0 0 20px 0;
             text-decoration: none;
             color: inherit;
             display: block;
-            letter-spacing: 0.02em;
         }
 
         .end-statement {
             color: #9e6821;
             display: block;
-            margin-top: 48px;
-            font-size: 16px; 
-            letter-spacing: 0.02em;
+            margin-top: 50px;
+            font-size: 15px;
+            letter-spacing: 0.03em;
+            word-spacing: 0.1em;
         }
 
-        /* LAYOUT ARCHITECTURE */
+        /* LAYOUT & MARGINS */
         .content-container {
-            padding: 0 var(--grid-line); /* Enforces the invisible left edge */
             width: 100%;
             box-sizing: border-box;
+            padding-bottom: var(--math-gap);
         }
 
         .chapter {
-            margin-bottom: var(--chapter-pause); 
+            padding: 0 var(--grid-edge);
+            margin-bottom: var(--math-gap);
+            margin-top: var(--math-gap);
         }
 
-        /* THE MOMENT OF BOLDNESS: Full Bleed Images */
-        .full-bleed {
+        /* THE BOLD MOMENT - Full Bleed Breakout */
+        .full-bleed-img {
             width: 100vw;
+            max-width: none;
             height: auto;
-            position: relative;
-            left: calc(-1 * var(--grid-line)); /* Violently breaks the grid to touch the glass */
-            margin-top: 10vh;
+            margin-left: calc(var(--grid-edge) * -1); /* Breaks the invisible grid */
             display: block;
+            margin-top: var(--math-gap);
         }
 
-        /* STRICT GALLERY: Adheres strictly to the grid */
+        /* STANDARD IMAGES */
+        .standard-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 60px;
+        }
+
         .gallery-wrap {
             display: flex;
             flex-direction: column;
-            gap: 40px; 
-            margin-top: 40px; 
+            gap: 60px; /* Vast spaces between gallery items */
+            margin-top: 60px; 
         }
 
         .gallery-wrap img {
             width: 100%;
             height: auto;
-            display: block;
         }
 
         /* GENTLE FADE */
         .fade-in {
             opacity: 0;
             transform: translateY(15px);
-            transition: opacity 1.5s ease, transform 1.5s ease;
+            transition: opacity 1.5s ease, transform 1.5s ease; /* Slower, heavier fade */
         }
         .fade-in.visible {
             opacity: 1;
@@ -152,8 +162,8 @@
 
     <section class="hero fade-in">
         <h2>
-            Time embodied in material.<br>
-            Built to live with.
+            <span style="white-space: nowrap;">Time embodied in material.</span><br>
+            <span style="white-space: nowrap;">Built to live with.</span>
         </h2>
     </section>
 
@@ -171,11 +181,11 @@
             <p>Time determines character.</p>
             <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
             
-            <img src="Process-Image-1.png" alt="Process" class="full-bleed fade-in">
+            <img src="Process-Image-1.png" alt="Process" class="full-bleed-img fade-in">
         </section>
 
         <section class="chapter fade-in">
-            <h2 style="margin-bottom: 0;">Objects in use</h2>
+            <h2>Objects in use</h2>
             <div class="gallery-wrap">
                 <img src="Object-Image-1.png" alt="Object" class="fade-in">
                 <img src="Object-Image-2.png" alt="Detail" class="fade-in">
@@ -188,8 +198,7 @@
             <a href="#">WhatsApp</a>
             <a href="#">Call</a>
             <span class="end-statement">We respond personally.</span>
-            
-            <img src="Process-Image-2.png" alt="Process" class="full-bleed fade-in" style="margin-bottom: 0;">
+            <img src="Process-Image-2.png" alt="Process" class="standard-img fade-in" style="margin-top: 80px;">
         </section>
     </div>
 
