@@ -9,21 +9,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
+    <script>
+        if (window.innerWidth <= 768) {
+            window.location.href = "mobile.html";
+        }
+    </script>
+
     <style>
         /* GLOBAL SETTINGS */
         body {
             background-color: #fffbef;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* STRICTLY disables scrolling */
             font-family: 'Tenor Sans', sans-serif;
             color: #5c3a05;
+            overflow-x: hidden;
         }
 
-        /* PERSISTENT TEXTURE BACKGROUND */
+        /* TEXTURED BACKGROUND */
         .bg-texture {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('Hero-Image.png');
             background-size: cover;
             background-position: center;
@@ -31,187 +37,168 @@
             z-index: -1;
         }
 
-        /* FIXED LEFT MENU */
-        .sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 300px;
-            height: 100vh;
-            padding: 60px 50px;
-            box-sizing: border-box;
-            border-right: 1px solid rgba(92, 58, 5, 0.1); /* Subtle divider */
-            z-index: 10;
-        }
-
-        /* MAGIC LOGO FIX */
+        /* PERSISTENT LOGO */
         .logo {
+            position: fixed;
+            top: 60px;
+            left: 8vw;
             width: 140px;
             height: auto;
-            margin-bottom: 80px;
-            mix-blend-mode: multiply; /* Instantly removes the white background */
-        }
-
-        .menu-links {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .menu-links span {
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .menu-links span.active {
-            opacity: 1;
-            font-weight: bold;
-            color: #322203;
-        }
-
-        /* RIGHT CONTENT AREA */
-        .content-area {
-            margin-left: 300px;
-            width: calc(100vw - 300px);
-            height: 100vh;
-            position: relative;
-        }
-
-        /* THE PAGES */
-        .page {
-            display: none; /* Hides all pages */
-            position: absolute;
-            top: 50%; left: 45%; /* Centers the text box */
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 800px;
-            background-color: transparent;
-        }
-
-        .page.active {
-            display: block; /* Shows only the active page */
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            z-index: 100;
+            mix-blend-mode: multiply; /* Fixes any white background */
         }
 
         /* TYPOGRAPHY */
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 56px;
+            font-size: 64px;
+            font-weight: 600;
             color: #322203;
-            margin: 0 0 30px 0;
+            margin: 0 0 40px 0;
             line-height: 1.1;
         }
 
-        p {
-            font-size: 24px;
-            line-height: 1.7;
-            margin: 0 0 20px 0;
+        p, a {
+            font-size: 26px;
+            line-height: 1.8;
+            margin: 0 0 28px 0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .end-statement {
             color: #9e6821;
             display: block;
-            margin-top: 40px;
-            font-size: 24px;
+            margin-top: 50px;
+            font-size: 26px;
         }
 
-        /* REDUCED EDITORIAL IMAGES */
-        .editorial-image {
-            width: 100%;
-            max-width: 400px; /* Strictly limits image size */
-            height: auto;
-            margin-top: 40px;
+        /* ARCHITECTURAL SPACING */
+        .chapter-pause {
+            margin-bottom: 25vh; /* The long, deep scroll */
+        }
+
+        /* ASYMMETRICAL HERO */
+        .hero {
+            height: 100vh;
+            position: relative;
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 12vw; /* Right-aligned container */
+            text-align: left; /* Strictly left-aligned text */
+            max-width: 800px;
+        }
+
+        /* STAGGERED TEXT BOXES */
+        .text-box {
+            background-color: #d9d5cb;
+            padding: 100px 100px; 
+            width: 600px; /* Restrained width */
+        }
+        .box-left {
+            margin-left: 12vw;
+        }
+        .box-right {
+            margin-left: auto;
+            margin-right: 12vw;
+        }
+
+        /* REDUCED EDITORIAL IMAGERY */
+        .editorial-img {
             display: block;
+            max-width: 550px; /* Reduced to feel like a magazine spread */
+            height: auto;
+            margin-top: 15vh;
         }
+        .img-right { margin-left: auto; margin-right: 15vw; }
+        .img-left { margin-left: 15vw; margin-right: auto; }
+        .img-center { margin: 15vh auto 0 auto; }
 
-        .gallery {
+        /* GALLERY STAGGER */
+        .gallery-wrap {
             display: flex;
-            gap: 30px;
-            margin-top: 40px;
+            flex-direction: column;
+            gap: 15vh;
+            margin-top: 15vh;
         }
-
-        .gallery img {
-            max-width: 250px; /* Highly reduced stacked images */
+        .gallery-wrap img {
+            max-width: 450px; /* Small, tactical photographs */
             height: auto;
         }
 
+        /* GENTLE FADE ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
     <div class="bg-texture"></div>
+    <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
 
-    <div class="sidebar">
-        <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
-        <div class="menu-links">
-            <span class="active" onclick="openPage('home', this)">Home</span>
-            <span onclick="openPage('about', this)">About</span>
-            <span onclick="openPage('process', this)">Process & Materials</span>
-            <span onclick="openPage('objects', this)">Objects in use</span>
-            <span onclick="openPage('contact', this)">Contact</span>
-        </div>
-    </div>
-
-    <div class="content-area">
-
-        <div id="home" class="page active">
+    <section class="hero fade-in">
+        <div class="hero-text">
             <h2>Time embodied in material.<br>Built to live with.</h2>
         </div>
+    </section>
 
-        <div id="about" class="page">
+    <section class="chapter-pause fade-in">
+        <div class="text-box box-left">
             <h2>About</h2>
             <p>DHYAI designs objects for everyday life.</p>
             <p>Design is integrated.<br>Objects endure.</p>
             <span class="end-statement">They remain.</span>
         </div>
+    </section>
 
-        <div id="process" class="page">
+    <section class="chapter-pause fade-in">
+        <div class="text-box box-right">
             <h2>Process & Materials</h2>
             <p>Every object begins with material — its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
             <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-            <img src="Process-Image-1.png" alt="Material" class="editorial-image">
         </div>
+        <img src="Process-Image-1.png" alt="Process" class="editorial-img img-left fade-in">
+    </section>
 
-        <div id="objects" class="page">
+    <section class="chapter-pause fade-in">
+        <div class="text-box box-left">
             <h2>Objects in use</h2>
-            <div class="gallery">
-                <img src="Object-Image-1.png" alt="Detail 1">
-                <img src="Object-Image-2.png" alt="Detail 2">
-                <img src="Object-Image-3.png" alt="Detail 3">
-            </div>
         </div>
+        <div class="gallery-wrap">
+            <img src="Object-Image-1.png" alt="Object" class="img-right fade-in">
+            <img src="Object-Image-2.png" alt="Detail" class="img-left fade-in">
+            <img src="Object-Image-3.png" alt="Material" class="img-center fade-in">
+        </div>
+    </section>
 
-        <div id="contact" class="page">
+    <section class="fade-in" style="margin-bottom: 20vh;">
+        <div class="text-box box-right">
             <h2>Contact</h2>
-            <p>WhatsApp</p>
-            <p>Call</p>
+            <a href="#">WhatsApp</a>
+            <a href="#">Call</a>
             <span class="end-statement">We respond personally.</span>
-            <img src="Process-Image-2.png" alt="Process" class="editorial-image">
         </div>
-
-    </div>
+        <img src="Process-Image-2.png" alt="Process" class="editorial-img img-left fade-in">
+    </section>
 
     <script>
-        function openPage(pageId, element) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
             });
-            // Show clicked page
-            document.getElementById(pageId).classList.add('active');
-
-            // Update menu highlighting
-            document.querySelectorAll('.menu-links span').forEach(link => {
-                link.classList.remove('active');
-            });
-            element.classList.add('active');
-        }
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
