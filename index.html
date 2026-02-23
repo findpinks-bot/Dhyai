@@ -37,21 +37,21 @@
             z-index: -1;
         }
 
-        /* PERSISTENT LOGO */
+        /* PERSISTENT LOGO - Shifted Left */
         .logo {
             position: fixed;
             top: 60px;
-            left: 8vw;
+            left: 4vw; /* Minutely shifted left to prevent overlap */
             width: 140px;
             height: auto;
             z-index: 100;
-            mix-blend-mode: multiply; /* Fixes any white background */
+            mix-blend-mode: multiply; 
         }
 
-        /* TYPOGRAPHY */
+        /* TYPOGRAPHY - Reduced by 2 points */
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 64px;
+            font-size: clamp(2.3rem, 4vw, 62px); /* Was 64px */
             font-weight: 600;
             color: #322203;
             margin: 0 0 40px 0;
@@ -59,7 +59,7 @@
         }
 
         p, a {
-            font-size: 26px;
+            font-size: 24px; /* Was 26px */
             line-height: 1.8;
             margin: 0 0 28px 0;
             text-decoration: none;
@@ -71,12 +71,12 @@
             color: #9e6821;
             display: block;
             margin-top: 50px;
-            font-size: 26px;
+            font-size: 24px; /* Was 26px */
         }
 
         /* ARCHITECTURAL SPACING */
         .chapter-pause {
-            margin-bottom: 25vh; /* The long, deep scroll */
+            margin-bottom: 25vh; 
         }
 
         /* ASYMMETRICAL HERO */
@@ -88,8 +88,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            right: 12vw; /* Right-aligned container */
-            text-align: left; /* Strictly left-aligned text */
+            right: 12vw; 
+            text-align: left; 
             max-width: 800px;
         }
 
@@ -97,7 +97,7 @@
         .text-box {
             background-color: #d9d5cb;
             padding: 100px 100px; 
-            width: 600px; /* Restrained width */
+            width: 600px; 
         }
         .box-left {
             margin-left: 12vw;
@@ -110,7 +110,7 @@
         /* REDUCED EDITORIAL IMAGERY */
         .editorial-img {
             display: block;
-            max-width: 550px; /* Reduced to feel like a magazine spread */
+            max-width: 550px; 
             height: auto;
             margin-top: 15vh;
         }
@@ -126,7 +126,7 @@
             margin-top: 15vh;
         }
         .gallery-wrap img {
-            max-width: 450px; /* Small, tactical photographs */
+            max-width: 450px; 
             height: auto;
         }
 
