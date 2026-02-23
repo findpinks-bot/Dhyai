@@ -42,8 +42,9 @@
             z-index: -1;
         }
 
+        /* FIXED LOGO BEHAVIOR */
         .logo {
-            position: fixed;
+            position: absolute; /* Changed from fixed so it stays in the hero section */
             top: 60px;
             left: var(--grid-line); 
             width: 140px;
@@ -52,19 +53,18 @@
         }
 
         /* STRICT TEXT HIERARCHY LOCK */
-        /* Forces exactly 32px between all text elements on desktop */
         .text-block {
             display: flex;
             flex-direction: column;
             gap: 32px; 
-            max-width: 700px; /* Restrains line-length for comfortable reading */
+            max-width: 700px; 
         }
 
         .text-block h2, 
         .text-block p, 
         .text-block a, 
         .text-block span {
-            margin: 0 !important; /* Strips away all unpredictable HTML margins */
+            margin: 0 !important; 
         }
 
         /* TYPOGRAPHY */
@@ -105,7 +105,7 @@
         }
 
         a:hover {
-            color: #322203; /* Subtle shift on desktop hover */
+            color: #322203; 
         }
 
         .tight-stack {
@@ -141,7 +141,7 @@
             display: block;
         }
 
-        /* EDITORIAL GALLERY: Staggered sizes to act as tactile prints */
+        /* EDITORIAL GALLERY */
         .gallery-wrap {
             display: flex;
             flex-direction: column;
@@ -201,7 +201,9 @@
         </section>
 
         <section class="chapter fade-in">
-            <h2 style="margin: 0;">Objects in use</h2>
+            <div class="text-block">
+                <h2>Objects in use</h2>
+            </div>
             <div class="gallery-wrap">
                 <img src="Object-Image-1.png" alt="Object" class="fade-in img-1">
                 <img src="Object-Image-2.png" alt="Detail" class="fade-in img-2">
