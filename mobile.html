@@ -51,12 +51,26 @@
             z-index: 100;
         }
 
+        /* STRICT TEXT HIERARCHY LOCK */
+        /* This container forces exactly 24px between all text elements, no exceptions */
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 24px; 
+        }
+
+        .text-block h2, 
+        .text-block p, 
+        .text-block a, 
+        .text-block span {
+            margin: 0 !important; /* Strips away all unpredictable HTML margins */
+        }
+
         /* TYPOGRAPHY */
         h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 32px; 
             color: #322203;
-            margin: 0 0 32px 0;
             line-height: 1.2;
             font-weight: 600;
         }
@@ -82,14 +96,12 @@
         p, a {
             font-size: 16px; 
             line-height: 1.8;
-            margin: 0 0 24px 0;
             text-decoration: none;
             color: inherit;
             display: block;
             letter-spacing: 0.02em;
         }
 
-        /* NEW RULE: Forces paired sentences to snap together tightly */
         .tight-stack {
             line-height: 1.35; 
         }
@@ -97,7 +109,6 @@
         .end-statement {
             color: #9e6821;
             display: block;
-            margin-top: 48px;
             font-size: 16px; 
             letter-spacing: 0.02em;
         }
@@ -126,7 +137,7 @@
             display: flex;
             flex-direction: column;
             gap: 40px; 
-            margin-top: 40px; 
+            margin-top: 24px; 
         }
 
         .gallery-wrap img {
@@ -160,22 +171,25 @@
 
     <div class="content-container">
         <section class="chapter fade-in">
-            <h2>About</h2>
-            <p>DHYAI designs objects for everyday life.</p>
-            <p class="tight-stack">Design is integrated.<br>Objects endure.</p>
-            <span class="end-statement">They remain.</span>
+            <div class="text-block">
+                <h2>About</h2>
+                <p>DHYAI designs objects for everyday life.</p>
+                <p class="tight-stack">Design is integrated.<br>Objects endure.</p>
+                <span class="end-statement">They remain.</span>
+            </div>
         </section>
 
         <section class="chapter fade-in">
-            <h2>Process & Materials</h2>
-            <p class="tight-stack">Material determines form.<br>Time determines character.</p>
-            <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
-            
+            <div class="text-block">
+                <h2>Process & Materials</h2>
+                <p class="tight-stack">Material determines form.<br>Time determines character.</p>
+                <span class="end-statement">Each artefact is designed with this continuity of time in mind.</span>
+            </div>
             <img src="Process-Image-1.png" alt="Process" class="full-bleed fade-in">
         </section>
 
         <section class="chapter fade-in">
-            <h2 style="margin-bottom: 0;">Objects in use</h2>
+            <h2 style="margin: 0;">Objects in use</h2>
             <div class="gallery-wrap">
                 <img src="Object-Image-1.png" alt="Object" class="fade-in">
                 <img src="Object-Image-2.png" alt="Detail" class="fade-in">
@@ -184,11 +198,12 @@
         </section>
 
         <section class="chapter fade-in" style="margin-bottom: 0;">
-            <h2>Contact</h2>
-            <a href="#">WhatsApp</a>
-            <a href="#">Call</a>
-            <span class="end-statement">We respond personally.</span>
-            
+            <div class="text-block">
+                <h2>Contact</h2>
+                <a href="#">WhatsApp</a>
+                <a href="#">Call</a>
+                <span class="end-statement">We respond personally.</span>
+            </div>
             <img src="Process-Image-2.png" alt="Process" class="full-bleed fade-in" style="margin-bottom: 0;">
         </section>
     </div>
