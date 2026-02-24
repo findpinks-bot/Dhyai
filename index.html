@@ -4,181 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHYAI</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
 
     <style>
-        /* 1. COLOUR SYSTEM (LOCKED) */
+        /* GLOBAL DESIGN SYSTEM */
         :root {
-            --bg-mineral: #F5F3EE;
-            --text-primary: #5A3802;
-            --logo-brass: #8C6A3B;
-            --desktop-gap: 140px;
-            --mobile-gap: 80px;
+            --bg-primary: #F4F1EA;
+            --bg-alt: #E9E2D6;
+            --bg-anchor: #2C2621;
+            --text-primary: #3B342E;
+            --text-accent: #5A3802;
+            --text-light: #F4F1EA;
+            
+            --pad-desktop: 110px;
+            --pad-mobile: 70px;
         }
 
         body {
-            background-color: var(--bg-mineral);
-            margin: 0; padding: 0;
-            font-family: 'Tenor Sans', sans-serif;
+            background-color: var(--bg-primary);
             color: var(--text-primary);
+            font-family: 'Tenor Sans', sans-serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 2. TYPOGRAPHY RULES */
-        h2 {
+        /* TYPOGRAPHY */
+        h1, h2, h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 600;
+            font-weight: 500;
+            letter-spacing: -0.5px;
             margin: 0 0 32px 0;
-            letter-spacing: 0.02em;
+            line-height: 1.2;
         }
 
-        p, a {
-            font-size: clamp(16px, 1.2vw, 18px);
+        p, a, span {
+            font-size: 16px;
             line-height: 1.8;
-            max-width: 65ch; /* Strict characters per line */
+            letter-spacing: 0.3px;
             margin: 0 0 24px 0;
+            max-width: 760px;
+            display: block;
             text-decoration: none;
             color: inherit;
         }
 
-        /* 5. LAYOUT RULES */
+        a.accent-link {
+            color: var(--text-accent);
+            transition: opacity 0.3s ease;
+        }
+
+        a.accent-link:hover {
+            opacity: 0.7;
+        }
+
+        /* LAYOUT & SPACING */
         section {
-            padding: var(--desktop-gap) 10vw;
+            padding: var(--pad-desktop) 12vw;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centers the column on page */
+            align-items: flex-start;
         }
 
-        .text-column {
-            width: 100%;
-            max-width: 800px;
-            text-align: left; /* Left aligned within centered column */
-        }
-
-        /* HERO SECTION */
-        .hero {
+        /* SECTION 1 — HERO */
+        #hero {
             height: 100vh;
+            min-height: 100vh;
             padding: 0;
             position: relative;
-            background-image: url('Hero-Image.png'); /* jali image */
+            background-image: url('Image-01.jpg'); /* Brick Jali */
             background-size: cover;
             background-position: center;
-            display: block;
-        }
-
-        .logo {
-            position: absolute;
-            top: 48px; left: 5vw;
-            width: 140px;
-            fill: var(--logo-brass);
         }
 
         .hero-overlay {
             position: absolute;
-            bottom: 80px; left: 5vw;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(44, 38, 33, 0.25) 0%, rgba(44, 38, 33, 0) 50%);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 12vw; /* 12% from left edge */
+            color: var(--text-primary);
+            z-index: 10;
+        }
+
+        #hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(32px, 5vw, 64px);
-            line-height: 1.1;
+            font-size: 24px;
+            letter-spacing: 1px;
+            margin-bottom: 64px;
         }
 
-        /* STACKED LINKS FOR CORRESPONDENCE */
-        .correspondence-links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 32px;
+        /* SECTION 2 — STUDIO */
+        #studio {
+            background-color: var(--bg-primary);
         }
 
+        /* SECTION 3 — IMAGE TRANSITION */
+        #material-transition {
+            padding: 0;
+            height: 60vh;
+            position: relative;
+            background-image: url('Image-02.jpg'); /* Muslin in motion */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .transition-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 12vw;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* SECTION 4 — MATERIAL */
+        #material {
+            background-color: var(--bg-alt);
+        }
+
+        /* SECTION 5 — DOMESTIC LIFE */
+        #domestic {
+            background-color: var(--bg-primary);
+        }
+
+        /* SECTION 6 — SELECTED STUDIES */
+        #selected {
+            background-color: var(--bg-primary);
+            padding-bottom: calc(var(--pad-desktop) * 1.5);
+        }
+
+        .studies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+            margin-top: 48px;
+            margin-bottom: 48px;
+        }
+
+        .study-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .study-card h3 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+        }
+
+        .study-card p {
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        /* SECTION 7 — CLOSING PANEL */
+        #closing {
+            background-color: var(--bg-anchor);
+            color: var(--text-light);
+            padding-bottom: var(--pad-desktop);
+        }
+
+        /* MOBILE ADJUSTMENTS */
         @media (max-width: 768px) {
-            section { padding: var(--mobile-gap) 24px; }
-            .hero-overlay { bottom: 40px; left: 24px; }
-            .logo { top: 32px; left: 24px; width: 110px; }
+            section {
+                padding: var(--pad-mobile) 24px;
+            }
+            #hero .hero-content {
+                left: 24px;
+            }
+            #hero h1 {
+                font-size: 32px;
+            }
+            #material-transition .transition-caption {
+                left: 24px;
+            }
+            .studies-grid {
+                grid-template-columns: 1fr;
+                gap: 64px;
+            }
         }
 
-        .fade-in { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* FADE ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="logo">
-            <h1 style="color:var(--logo-brass); margin:0; font-family:'Cormorant Garamond';">DHYAI</h1>
-        </div>
-        <div class="hero-overlay">
-            Time embodied in material.<br>
-            Built to live with.
-        </div>
-    </section>
-
-    <section class="fade-in">
-        <div class="text-column">
-            <h2>Studio</h2>
-            <p>DHYAI develops domestic objects through material-led study.</p>
-            <p>Each form begins with fibre — how it falls, carries weight, catches light, and responds to touch.</p>
-            <p>Proportion and repetition establish structure. Surface emerges through process.</p>
-            <p>Production remains measured. Forms are introduced deliberately, with attention to how they settle within lived space.</p>
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <div class="logo">DHYAI</div>
+            <h1>Time embodied in material.<br>Built to live with.</h1>
+            <p style="font-size: 16px;">Domestic objects shaped through fibre, proportion, and use.</p>
         </div>
     </section>
 
-    <section class="fade-in">
-        <div class="text-column">
-            <h2>Material</h2>
-            <p>Material carries behaviour.</p>
-            <p>Density influences fall. Fibre determines breathability. Pigment settles differently across weaves.</p>
-            <p>Repetition, carried across scale, quietly structures a room.</p>
-            <p>As objects age, tone deepens and texture softens — a progression considered from the beginning of design.</p>
-        </div>
+    <section id="studio" class="fade-in">
+        <h2>STUDIO</h2>
+        <p>DHYAI develops domestic objects through material-led study.</p>
+        <p>Each form begins with fibre — how it falls, carries weight, catches light, and responds to touch.</p>
+        <p>Proportion and repetition guide the structure quietly.</p>
+        <p>Forms are introduced with restraint, intended to settle naturally within lived space.</p>
+        <p>The work does not seek attention.<br>It seeks permanence.</p>
     </section>
 
-    <section class="fade-in">
-        <div class="text-column">
-            <h2>Domestic Life</h2>
-            <p>Objects enter routine.</p>
-            <p>A fold introduces shadow. Contact establishes wear. Placement creates rhythm within a space.</p>
-            <p>These gestures are not staged; they accumulate naturally.</p>
-            <p>The interior completes the object.</p>
-        </div>
+    <section id="material-transition" class="fade-in">
+        <p class="transition-caption">Material carries memory.</p>
     </section>
 
-    <section class="fade-in">
-        <div class="text-column">
-            <h2>Continuity</h2>
-            <p>DHYAI develops objects intended to remain.</p>
-            <p>They integrate gradually, gaining continuity through daily use.</p>
-            <p>Time completes the work.</p>
-        </div>
+    <section id="material" class="fade-in">
+        <h2>MATERIAL</h2>
+        <p>Material carries behaviour.</p>
+        <p>Cotton softens and settles over time.<br>Pigment deepens where it gathers within fibre.</p>
+        <p>Repetition, carried across scale, quietly structures the room.</p>
+        <p>As objects age, tone grows warmer and texture more familiar.</p>
+        <p>Design anticipates this change.</p>
+        <a href="process.html" class="accent-link" style="margin-top: 24px;">Explore Process & Material Study →</a>
     </section>
 
-    <section class="fade-in">
-        <div class="text-column">
-            <h2>Objects</h2>
-            <p>Current studies include percale bedding, muslin dohars, bedcovers, table linen, and ritual vessels.</p>
-            <p>Each is shaped through the same material discipline and introduced gradually.</p>
-        </div>
+    <section id="domestic" class="fade-in">
+        <h2>DOMESTIC LIFE</h2>
+        <p>Objects integrate slowly into routine.</p>
+        <p>A fold introduces shadow.<br>Weight settles across a bed.<br>Light moves across surface through the day.</p>
+        <p>Use completes the form.</p>
+        <p>The interior shapes the final expression of each piece.</p>
     </section>
 
-    <section class="fade-in" style="margin-bottom: 100px;">
-        <div class="text-column">
-            <h2>Correspondence</h2>
-            <div class="correspondence-links">
-                <a href="mailto:hello@dhyai.com">Email</a>
-                <a href="https://wa.me/yournumber">WhatsApp</a>
+    <section id="selected" class="fade-in">
+        <h2>SELECTED STUDIES</h2>
+        <p>A considered selection currently available for enquiry.</p>
+        
+        <div class="studies-grid">
+            <div class="study-card">
+                <img src="Image-03.jpg" alt="Selected Study 01">
+                <h3>Object Name</h3>
+                <p>Material specification.</p>
+                <p>Short line regarding form or function.</p>
+                <a href="product.html?id=1" class="accent-link">Enquire →</a>
             </div>
-            <p style="margin-top: 48px; opacity: 0.8;">Each message is read and responded to with care.</p>
+            <div class="study-card">
+                <img src="Image-04.jpg" alt="Selected Study 02">
+                <h3>Object Name</h3>
+                <p>Material specification.</p>
+                <p>Short line regarding form or function.</p>
+                <a href="product.html?id=2" class="accent-link">Enquire →</a>
+            </div>
+            <div class="study-card">
+                <img src="Image-05.jpg" alt="Selected Study 03">
+                <h3>Object Name</h3>
+                <p>Material specification.</p>
+                <p>Short line regarding form or function.</p>
+                <a href="product.html?id=3" class="accent-link">Enquire →</a>
+            </div>
         </div>
+
+        <a href="products.html" class="accent-link">View All Objects →</a>
+    </section>
+
+    <section id="closing" class="fade-in">
+        <p>DHYAI develops objects intended to remain.</p>
+        <p>They gain continuity through use.</p>
+        <p>Time completes the work.</p>
+        <a href="contact.html" class="accent-link" style="color: var(--text-light); opacity: 0.6; margin-top: 24px;">Enquiries →</a>
     </section>
 
     <script>
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
+        
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
