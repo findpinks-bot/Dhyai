@@ -8,164 +8,178 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
-    <script>
-        if (window.innerWidth <= 768) { window.location.href = "mobile.html"; }
-    </script>
-
     <style>
-        /* GLOBAL RULES */
+        /* 1. COLOUR SYSTEM (LOCKED) */
         :root {
-            --bg-clean: #F5F2EC;
-            --text-dark: #2B2118;
-            --accent-gold: #9e6821;
-            /* Fixed Spacing Scale */
-            --s8: 8px; --s16: 16px; --s32: 32px; --s64: 64px; --s96: 96px; --s160: 160px;
+            --bg-mineral: #F5F3EE;
+            --text-primary: #5A3802;
+            --logo-brass: #8C6A3B;
+            --desktop-gap: 140px;
+            --mobile-gap: 80px;
         }
 
         body {
-            background-color: var(--bg-clean);
+            background-color: var(--bg-mineral);
             margin: 0; padding: 0;
             font-family: 'Tenor Sans', sans-serif;
-            color: var(--text-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, .stark-text {
+        /* 2. TYPOGRAPHY RULES */
+        h2 {
             font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 4vw, 48px);
             font-weight: 600;
-            margin: 0;
+            margin: 0 0 32px 0;
+            letter-spacing: 0.02em;
         }
 
-        p, a { font-size: 18px; line-height: 1.6; margin: 0; text-decoration: none; color: inherit; }
-
-        /* DESKTOP CONTAINER */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 80px;
+        p, a {
+            font-size: clamp(16px, 1.2vw, 18px);
+            line-height: 1.8;
+            max-width: 65ch; /* Strict characters per line */
+            margin: 0 0 24px 0;
+            text-decoration: none;
+            color: inherit;
         }
 
-        /* 1. HERO (Desktop) */
+        /* 5. LAYOUT RULES */
+        section {
+            padding: var(--desktop-gap) 10vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the column on page */
+        }
+
+        .text-column {
+            width: 100%;
+            max-width: 800px;
+            text-align: left; /* Left aligned within centered column */
+        }
+
+        /* HERO SECTION */
         .hero {
             height: 100vh;
+            padding: 0;
             position: relative;
-        }
-        .logo {
-            position: absolute;
-            top: 48px; left: 80px;
-            width: 160px;
-            mix-blend-mode: multiply;
-        }
-        .hero-tagline {
-            position: absolute;
-            top: 60%;
-            left: 80px;
-            font-size: 72px; /* Scale: 64-80px */
-            line-height: 1.1;
-            max-width: 800px;
-        }
-
-        /* 2. OBJECTS IN USE (Desktop) */
-        .objects-section { margin-top: var(--s160); }
-        .section-heading { font-size: 48px; margin-bottom: var(--s64); }
-        
-        .full-bleed-img {
-            width: 100vw;
-            height: 70vh;
-            margin-left: calc(-50vw + 50%);
-            object-fit: cover;
+            background-image: url('Hero-Image.png'); /* jali image */
+            background-size: cover;
+            background-position: center;
             display: block;
         }
-        .image-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--s32);
-            margin-top: var(--s32);
-        }
-        .grid-img { width: 100%; height: 50vh; object-fit: cover; }
 
-        /* 3. STARK SECTION */
-        .stark-section {
-            background-color: #FFFFFF;
-            padding: 200px 0;
-            margin-top: var(--s160);
-            text-align: center;
+        .logo {
+            position: absolute;
+            top: 48px; left: 5vw;
+            width: 140px;
+            fill: var(--logo-brass);
         }
-        .stark-text {
-            font-size: 72px;
-            max-width: 900px;
-            margin: 0 auto;
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 80px; left: 5vw;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 5vw, 64px);
             line-height: 1.1;
-            text-transform: uppercase;
         }
 
-        /* 4. ASYMMETRICAL SECTIONS */
-        .asym-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-top: var(--s160);
-            align-items: flex-start;
+        /* STACKED LINKS FOR CORRESPONDENCE */
+        .correspondence-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
         }
-        .text-restrained { max-width: 500px; }
 
-        /* FADE ANIMATION */
-        .fade { opacity: 0; transition: opacity 0.3s ease; }
-        .fade.visible { opacity: 1; }
+        @media (max-width: 768px) {
+            section { padding: var(--mobile-gap) 24px; }
+            .hero-overlay { bottom: 40px; left: 24px; }
+            .logo { top: 32px; left: 24px; width: 110px; }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <img src="DHYAI-logo.png" alt="DHYAI" class="logo">
-
-    <section class="hero container">
-        <h1 class="hero-tagline">Time embodied in material.<br>Built to live with.</h1>
-    </section>
-
-    <section class="objects-section container">
-        <h2 class="section-heading">Objects in use</h2>
-        <img src="Object-Image-1.png" class="full-bleed-img fade">
-        <div class="image-grid">
-            <img src="Object-Image-2.png" class="grid-img fade">
-            <img src="Object-Image-3.png" class="grid-img fade">
+    <section class="hero">
+        <div class="logo">
+            <h1 style="color:var(--logo-brass); margin:0; font-family:'Cormorant Garamond';">DHYAI</h1>
+        </div>
+        <div class="hero-overlay">
+            Time embodied in material.<br>
+            Built to live with.
         </div>
     </section>
 
-    <section class="stark-section">
-        <div class="stark-text fade">
-            Material determines form.<br>Time determines character.
+    <section class="fade-in">
+        <div class="text-column">
+            <h2>Studio</h2>
+            <p>DHYAI develops domestic objects through material-led study.</p>
+            <p>Each form begins with fibre — how it falls, carries weight, catches light, and responds to touch.</p>
+            <p>Proportion and repetition establish structure. Surface emerges through process.</p>
+            <p>Production remains measured. Forms are introduced deliberately, with attention to how they settle within lived space.</p>
         </div>
     </section>
 
-    <section class="asym-grid container">
-        <h2 class="section-heading">Process & Materials</h2>
-        <div class="text-restrained fade">
-            <p>Every object begins with material—its weight, its fibre, how it receives touch. Form follows from there. And time continues the work: objects soften, settle, and deepen through use.</p>
+    <section class="fade-in">
+        <div class="text-column">
+            <h2>Material</h2>
+            <p>Material carries behaviour.</p>
+            <p>Density influences fall. Fibre determines breathability. Pigment settles differently across weaves.</p>
+            <p>Repetition, carried across scale, quietly structures a room.</p>
+            <p>As objects age, tone deepens and texture softens — a progression considered from the beginning of design.</p>
         </div>
     </section>
 
-    <img src="Process-Image-1.png" class="full-bleed-img fade" style="margin-top: var(--s160);">
-
-    <section class="asym-grid container">
-        <div class="text-restrained fade">
-            <h2 class="section-heading">About</h2>
-            <p>DHYAI designs objects for everyday life. Design is integrated. Objects endure. They remain.</p>
+    <section class="fade-in">
+        <div class="text-column">
+            <h2>Domestic Life</h2>
+            <p>Objects enter routine.</p>
+            <p>A fold introduces shadow. Contact establishes wear. Placement creates rhythm within a space.</p>
+            <p>These gestures are not staged; they accumulate naturally.</p>
+            <p>The interior completes the object.</p>
         </div>
-        <img src="Object-Image-3.png" class="grid-img fade">
     </section>
 
-    <section class="container fade" style="margin: var(--s160) 0;">
-        <h2 class="section-heading">Contact</h2>
-        <div style="display: flex; flex-direction: column; gap: var(--s32);">
-            <a href="#" style="font-size: 32px;">WhatsApp</a>
-            <a href="#" style="font-size: 32px;">Call</a>
-            <a href="#" style="font-size: 32px;">Email</a>
+    <section class="fade-in">
+        <div class="text-column">
+            <h2>Continuity</h2>
+            <p>DHYAI develops objects intended to remain.</p>
+            <p>They integrate gradually, gaining continuity through daily use.</p>
+            <p>Time completes the work.</p>
+        </div>
+    </section>
+
+    <section class="fade-in">
+        <div class="text-column">
+            <h2>Objects</h2>
+            <p>Current studies include percale bedding, muslin dohars, bedcovers, table linen, and ritual vessels.</p>
+            <p>Each is shaped through the same material discipline and introduced gradually.</p>
+        </div>
+    </section>
+
+    <section class="fade-in" style="margin-bottom: 100px;">
+        <div class="text-column">
+            <h2>Correspondence</h2>
+            <div class="correspondence-links">
+                <a href="mailto:hello@dhyai.com">Email</a>
+                <a href="https://wa.me/yournumber">WhatsApp</a>
+            </div>
+            <p style="margin-top: 48px; opacity: 0.8;">Each message is read and responded to with care.</p>
         </div>
     </section>
 
     <script>
-        const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold: 0.1});
-        document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
