@@ -1,0 +1,147 @@
+[
+  {
+    "id": "textile-study-01",
+    "name": "Textile Study 01",
+    "category": "Objects in use",
+    "availability": "Made to order",
+    "price_note": "Price on request",
+    "shortDescription": "Hand-printed textile with layered geometry and botanical detail.",
+    "description": "A textile study exploring rhythm, spacing, and pigment density. Designed to age gently with use—softening, settling, and deepening over time.",
+    "materials": [
+      "Cotton textile",
+      "Hand-mixed pigments"
+    ],
+    "care": [
+      "Spot clean or gentle cold wash",
+      "Line dry",
+      "Avoid harsh detergents"
+    ],
+    "images": [
+      {
+        "src": "assets/images/product-01.jpg",
+        "alt": "Hand-printed textile detail with geometric bands"
+      },
+      {
+        "src": "assets/images/product-02.jpg",
+        "alt": "Hand-printed textile detail with botanical motif"
+      },
+      {
+        "src": "assets/images/product-03.jpg",
+        "alt": "Hand-printed textile detail with circular elements"
+      }
+    ]
+  },
+  {
+    "id": "textile-study-02",
+    "name": "Textile Study 02",
+    "category": "Objects in use",
+    "availability": "Limited",
+    "price_note": "Price on request",
+    "shortDescription": "Botanical imprint with restrained palette and shadowed texture.",
+    "description": "A composition built from quiet contrasts and tactile print edges. Crafted to feel lived-in and familiar, while remaining precise in form.",
+    "materials": [
+      "Cotton textile",
+      "Natural dyes / pigments"
+    ],
+    "care": [
+      "Gentle cold wash",
+      "Dry in shade",
+      "Iron on reverse (low heat)"
+    ],
+    "images": [
+      {
+        "src": "assets/images/product-02.jpg",
+        "alt": "Botanical imprint textile detail"
+      }
+    ]
+  },
+  {
+    "id": "textile-study-03",
+    "name": "Textile Study 03",
+    "category": "Objects in use",
+    "availability": "Made to order",
+    "price_note": "Price on request",
+    "shortDescription": "Pattern study with repeated bands and circular motifs.",
+    "description": "A modular pattern designed for everyday settings—table, bed, or wall—where material presence matters as much as the graphic language.",
+    "materials": [
+      "Cotton textile",
+      "Hand printing blocks"
+    ],
+    "care": [
+      "Dry clean optional",
+      "Cold wash recommended",
+      "Do not bleach"
+    ],
+    "images": [
+      {
+        "src": "assets/images/product-03.jpg",
+        "alt": "Pattern study textile with repeated bands"
+      }
+    ]
+  },
+  {
+    "id": "commission",
+    "name": "Custom Commission",
+    "category": "Bespoke",
+    "availability": "Enquiries open",
+    "price_note": "Quoted per brief",
+    "shortDescription": "Collaborate on a custom textile or object for your space.",
+    "description": "For clients who want a piece tailored to scale, palette, and context. Share a reference, intended use, and timeline—DHYAI responds personally.",
+    "materials": [
+      "As per project"
+    ],
+    "care": [
+      "As per materials"
+    ],
+    "images": [
+      {
+        "src": "assets/images/process-02.jpg",
+        "alt": "Block printing process detail"
+      }
+    ]
+  },
+  {
+    "id": "process-study-01",
+    "name": "Process Study 01",
+    "category": "Process",
+    "availability": "Studio series",
+    "price_note": "Not for sale",
+    "shortDescription": "Material exploration—from fibre to form.",
+    "description": "A documentation of material handling and decision-making. Useful for collaborators and collectors who want to understand the work behind the work.",
+    "materials": [
+      "Studio materials"
+    ],
+    "care": [
+      "—"
+    ],
+    "images": [
+      {
+        "src": "assets/images/process-01.jpg",
+        "alt": "Hands lifting fabric in studio"
+      }
+    ]
+  },
+  {
+    "id": "process-study-02",
+    "name": "Process Study 02",
+    "category": "Process",
+    "availability": "Studio series",
+    "price_note": "Not for sale",
+    "shortDescription": "Block printing and mark-making.",
+    "description": "A closer look at printing, pressure, and pigment—where time and repetition build the final surface.",
+    "materials": [
+      "Blocks",
+      "Pigments",
+      "Textiles"
+    ],
+    "care": [
+      "—"
+    ],
+    "images": [
+      {
+        "src": "assets/images/process-02.jpg",
+        "alt": "Block printing logo"
+      }
+    ]
+  }
+]
